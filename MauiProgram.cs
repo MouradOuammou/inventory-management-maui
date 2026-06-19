@@ -22,7 +22,9 @@ public static class MauiProgram
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
             });
 
+        // Swap to HttpInventoryService for a real backend — no other file changes.
         builder.Services.AddSingleton<IInventoryService, MockInventoryService>();
+        builder.Services.AddSingleton<INavigationService, ShellNavigationService>();
 
         builder.Services.AddTransient<InventoryListViewModel>();
         builder.Services.AddTransient<InventoryDetailViewModel>();
