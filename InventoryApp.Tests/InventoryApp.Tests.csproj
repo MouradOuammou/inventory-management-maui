@@ -17,6 +17,9 @@
 	<ItemGroup>
 		<Compile Include="..\Models\InventoryItem.cs" />
 		<Compile Include="..\Services\IInventoryService.cs" />
+		<Compile Include="..\Services\INavigationService.cs" />
+		<Compile Include="..\ViewModels\BaseViewModel.cs" />
+		<Compile Include="..\ViewModels\InventoryListViewModel.cs" />
 	</ItemGroup>
 
 </Project>
