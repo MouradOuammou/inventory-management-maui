@@ -1,4 +1,3 @@
-cat > README.md << 'EOF'
 # Inventory Management Module — .NET MAUI
 
 Mobile module allowing users to view inventory items and update stock quantities, built as part of a technical assessment for an ERP application.
