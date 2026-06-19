@@ -6,19 +6,22 @@ using InventoryApp.Services;
 namespace InventoryApp.ViewModels;
 
 /// <summary>
-/// ViewModel backing the inventory list page. Depends ONLY on the
-/// IInventoryService abstraction (constructor injection), never on a
-/// concrete implementation — this is what makes it testable and scalable.
+/// ViewModel backing the inventory list page. Depends only on
+/// IInventoryService and INavigationService — both abstractions —
+/// so this class has zero dependency on the MAUI runtime and can be
+/// instantiated and tested as a plain .NET object.
 /// </summary>
 public partial class InventoryListViewModel : BaseViewModel
 {
     private readonly IInventoryService _inventoryService;
+    private readonly INavigationService _navigationService;
 
     public ObservableCollection<InventoryItem> Items { get; } = new();
 
-    public InventoryListViewModel(IInventoryService inventoryService)
+    public InventoryListViewModel(IInventoryService inventoryService, INavigationService navigationService)
     {
         _inventoryService = inventoryService;
+        _navigationService = navigationService;
         Title = "Inventory";
     }
 
@@ -56,6 +59,6 @@ public partial class InventoryListViewModel : BaseViewModel
     private async Task GoToDetailAsync(InventoryItem? selectedItem)
     {
         if (selectedItem is null) return;
-        await Shell.Current.GoToAsync($"detail?itemId={selectedItem.ItemId}");
+        await _navigationService.GoToDetailAsync(selectedItem.ItemId);
     }
 }
