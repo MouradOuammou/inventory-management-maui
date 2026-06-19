@@ -11,6 +11,7 @@ namespace InventoryApp.Tests;
 public class FakeInventoryService : IInventoryService
 {
     public bool ShouldThrowOnGet { get; set; }
+    public bool ShouldThrowOnGetById { get; set; }
     public bool ShouldThrowOnUpdate { get; set; }
 
     private readonly List<InventoryItem> _items = new()
@@ -25,8 +26,11 @@ public class FakeInventoryService : IInventoryService
         return Task.FromResult(_items.ToList());
     }
 
-    public Task<InventoryItem?> GetItemByIdAsync(int itemId) =>
-        Task.FromResult(_items.FirstOrDefault(i => i.ItemId == itemId));
+    public Task<InventoryItem?> GetItemByIdAsync(int itemId)
+    {
+        if (ShouldThrowOnGetById) throw new InventoryServiceException("Simulated network failure.");
+        return Task.FromResult(_items.FirstOrDefault(i => i.ItemId == itemId));
+    }
 
     public Task<InventoryItem> UpdateQuantityAsync(int itemId, int newQuantity)
     {
