@@ -1,7 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net8.0</TargetFramework>
+		<TargetFramework>net8.0-maccatalyst</TargetFramework>
+		<UseMaui>true</UseMaui>
+		<OutputType>Library</OutputType>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<IsPackable>false</IsPackable>
@@ -15,11 +17,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Include="..\Models\InventoryItem.cs" />
-		<Compile Include="..\Services\IInventoryService.cs" />
-		<Compile Include="..\Services\INavigationService.cs" />
-		<Compile Include="..\ViewModels\BaseViewModel.cs" />
-		<Compile Include="..\ViewModels\InventoryListViewModel.cs" />
+		<ProjectReference Include="..\InventoryApp.csproj" />
 	</ItemGroup>
 
 </Project>
